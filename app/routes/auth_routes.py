@@ -2,6 +2,7 @@ from flask import request, jsonify
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 from app.services import UserService
 from flask import Blueprint
+
 user_app = Blueprint('user_app', __name__)
 
 
@@ -17,6 +18,7 @@ def login():
             access_token = create_access_token(identity=user.to_json())
             return jsonify(access_token=access_token), 200
     return jsonify({'error': 'Invalid username or password'}), 401
+
 
 @user_app.route('/protected', methods=['GET'])
 @jwt_required()

@@ -11,18 +11,21 @@ import random
 def payment_id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+
 class Payment(EmbeddedDocument):
     id = StringField(default=payment_id_generator())
     mode = StringField(default='cash')
     created_at = DateTimeField(default=datetime.now)
     status = StringField(default='pending')
 
+
 class OrderItem(EmbeddedDocument):
     product = ReferenceField(Product)
     quantity = IntField(default=1)
     price = FloatField(required=True)
-    estimated_delivery_time = DateTimeField(default=datetime.now()+timedelta(days=10))
+    estimated_delivery_time = DateTimeField(default=datetime.now() + timedelta(days=10))
     delivered = BooleanField(default=False)
+
 
 class Order(Document):
     id = SequenceField(primary_key=True)

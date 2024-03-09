@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator, ValidationError, field_validator
+from pydantic import BaseModel, model_validator, ValidationError
 from typing import Dict, Optional, List, Union
 from datetime import datetime
 from app.services import OrderService
