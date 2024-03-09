@@ -1,7 +1,7 @@
 Flask
 flask-jwt-extended
-flask-mongoengine
 Flask-Caching
+git+https://github.com/idoshr/flask-mongoengine.git@1.0.1
 pydantic
 elasticsearch
 elasticsearch-dsl
