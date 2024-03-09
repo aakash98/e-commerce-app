@@ -23,7 +23,7 @@ class UserService:
     def create_user(cls, **kwargs):
         kwargs.pop('id', None)
         if 'password' in kwargs:
-            kwargs['password'] = generate_password_hash(kwargs['password'])
+            kwargs['password'] = generate_password_hash(kwargs['password'],'pbkdf2')
         user = User(**kwargs)
         user.save()
         return user
@@ -34,7 +34,7 @@ class UserService:
         kwargs.pop('id', None)
         kwargs.pop('username', None)
         if 'password' in kwargs:
-            kwargs['password'] = generate_password_hash(kwargs['password'])
+            kwargs['password'] = generate_password_hash(kwargs['password'], 'pbkdf2')
         user.update(**kwargs)
         user.save()
         return user
