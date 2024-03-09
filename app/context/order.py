@@ -3,6 +3,8 @@ from typing import Dict, Optional, List, Union
 from datetime import datetime
 from app.services import OrderService
 import json
+
+
 class OrderContext(BaseModel):
     user_id: int
     address_name: str
@@ -16,8 +18,6 @@ class OrderContext(BaseModel):
     fulfilled_at: Optional[Union[datetime, None]] = None
     order: Optional[Dict] = None
 
-
-
     @classmethod
     def get_user_from_user_id(cls, user_id):
         from app.services import UserService
@@ -27,7 +27,6 @@ class OrderContext(BaseModel):
         if not user:
             raise ValidationError(f"User Not Found")
         return json.loads(user.to_json())
-
 
     @classmethod
     def get_address_from_name(cls, address_name, addresses):
@@ -64,8 +63,6 @@ class OrderContext(BaseModel):
     def pre_validate_payment(cls, payment_info):
         # TODO: Implement Phase 1 Validation Of Cards/Validity/Digital Payment OTPs, etc
         return {'mode': 'cash'}
-
-
 
     @model_validator(mode='before')
     def validate_pre_order(cls, values):
