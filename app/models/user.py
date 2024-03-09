@@ -1,4 +1,5 @@
-from mongoengine import IntField,Document,EmbeddedDocument, SequenceField, BooleanField, StringField, EmbeddedDocumentListField
+from mongoengine import IntField, Document, EmbeddedDocument, SequenceField, BooleanField, StringField, \
+    EmbeddedDocumentListField
 
 
 class Address(EmbeddedDocument):
@@ -11,6 +12,7 @@ class Address(EmbeddedDocument):
     city = StringField(required=True)
     state = StringField(required=True)
     country = StringField(default='in')
+
 
 class User(Document):
     id = SequenceField(primary_key=True)

@@ -4,6 +4,7 @@ from mongoengine import (Document, StringField,
                          SequenceField, IntField, FloatField,
                          BooleanField, signals)
 
+
 class Product(Document):
     id = SequenceField(primary_key=True)
     name = StringField(required=True)
@@ -20,5 +21,6 @@ class Product(Document):
         from app.instance import move_to_es
         move_to_es.delay(json.loads(document.to_json()))
         print(f"Product {document.name} saved successfully")
+
 
 signals.post_save.connect(Product.post_save, sender=Product)

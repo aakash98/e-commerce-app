@@ -2,7 +2,9 @@ from app.instance.elasticsearch import es
 from flask import jsonify, request
 from elasticsearch_dsl import Search, Q
 from flask import Blueprint
+
 search_app = Blueprint('search_app', __name__)
+
 
 @search_app.route('/search', methods=['GET'])
 def search():
