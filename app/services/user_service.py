@@ -22,6 +22,8 @@ class UserService:
     @classmethod
     def create_user(cls, **kwargs):
         kwargs.pop('id', None)
+        if 'password' in kwargs:
+            kwargs['password'] = generate_password_hash(kwargs['password'])
         user = User(**kwargs)
         user.save()
         return user
